@@ -40,7 +40,7 @@ function ldinc_starting_equipment.fn.check_starting_equipment(player)
 				err_string = err
 			end
 
-			log("Invalid item '" .. item.name .. "' was ignored to add as starting equipment with error: " .. err_string)
+			log("Invalid item '" .. item.name .. "' with quality '" .. item.quality .. "' was ignored to add as starting equipment with error: " .. err_string)
 		end
 
 		::continue::

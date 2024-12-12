@@ -15,13 +15,28 @@ function ldinc_starting_equipment.fn.get_items_from_string(str)
 	---@type SimpleItemStack[]
 	local list = {}
 
-	for name, v in string.gmatch(str, "([%w%-]+)=(%d+)") do
+	for name, v, q in string.gmatch(str, "([%w%-]+)=(%d+):?(%d*)") do
 		local count = tonumber(v)
+		local qi = tonumber(q)
+		local quality
+
+		if qi == 1 then
+			quality = 'uncommon'
+		elseif qi == 2 then
+			quality = 'rare'
+		elseif qi == 3 then
+			quality = 'epic'
+		elseif qi == 4 then
+			quality = 'legendary'
+		else
+			quality = 'normal'
+		end
 
 		---@type SimpleItemStack
 		local item = {
 			name = name,
 			count = count,
+			quality = quality,
 		}
 
 		table.insert(list, item)
